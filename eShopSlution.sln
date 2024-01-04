@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopSlution.WebApp", "eShopSlution.WebApp\eShopSlution.WebApp.csproj", "{E916EC28-C216-4D10-A538-195B46DDC99E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopSlution.WebApp", "eShopSlution.WebApp\eShopSlution.WebApp.csproj", "{E916EC28-C216-4D10-A538-195B46DDC99E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5A0C24CD-AEE9-4B52-863A-0B05536C3A86}"
+	ProjectSection(SolutionItems) = preProject
+		REAME.md = REAME.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
