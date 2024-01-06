@@ -14,5 +14,8 @@ namespace eShopSlution.Data.Entities
         public bool IsShowOnHome { get; set; }
         public int? ParentId { get; set; }
         public Status Status { get; set; }
+
+        public IEnumerable<CategoryTranslation> CategoryTranslations { get; set; }
+        public IEnumerable<ProductInCategory> ProductInCategories { get; set; }
     }
 }

@@ -18,6 +18,11 @@ namespace eShopSlution.Data.Entities
         public int ViewCount { get; set; } 
         public DateTime DataCreated { get; set; }
         //[Required]
+        public IEnumerable<Cart> Carts { get; set; }
         public string SeoAlias { get; set; }
+
+        public IEnumerable<OrderDetail> OrderDetails { set; get; }
+        public IEnumerable<ProductInCategory> ProductInCategories { set; get; }
+        public IEnumerable<ProductTranslation> ProductTranslations { set; get; }
     }
 }
