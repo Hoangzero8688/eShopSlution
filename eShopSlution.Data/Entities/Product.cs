@@ -16,10 +16,10 @@ namespace eShopSlution.Data.Entities
         public decimal OriginalPrice { get; set; } 
         public int Stock { get; set; } 
         public int ViewCount { get; set; } 
+        public string SeoAlias { get; set; }
         public DateTime DataCreated { get; set; }
         //[Required]
         public IEnumerable<Cart> Carts { get; set; }
-        public string SeoAlias { get; set; }
 
         public IEnumerable<OrderDetail> OrderDetails { set; get; }
         public IEnumerable<ProductInCategory> ProductInCategories { set; get; }
