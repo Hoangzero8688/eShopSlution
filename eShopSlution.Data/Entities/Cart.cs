@@ -18,5 +18,7 @@ namespace eShopSlution.Data.Entities
         public Product Product { get; set; }
 
         public DateTime DateCreated { get; set; }
+
+        public AppUser appUser { get; set; }
     }
 }
