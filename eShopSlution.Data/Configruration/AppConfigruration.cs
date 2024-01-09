@@ -19,7 +19,7 @@ namespace eShopSlution.Data.Configruration
 
             builder.Property(x => x.Value).IsRequired(true);
 
-            builder
+            
         }
     }
 }
