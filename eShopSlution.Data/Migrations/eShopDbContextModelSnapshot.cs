@@ -81,7 +81,7 @@ namespace eShopSlution.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "02e0c183-2894-46c3-9ecb-b41dd3e65ed4",
+                            ConcurrencyStamp = "7c57cfca-e4b4-4a3b-8596-39ae1fa4628b",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -158,7 +158,7 @@ namespace eShopSlution.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ab9f5ce4-6b18-4c8c-84d7-a66302bbb65e",
+                            ConcurrencyStamp = "2beed546-53c9-4a4a-8424-a5d60f5e2ebc",
                             Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tedu.international@gmail.com",
                             EmailConfirmed = true,
@@ -167,7 +167,7 @@ namespace eShopSlution.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "tedu.international@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPG0nWqdrcUBsLXYB/AzbZyuGcBeIWZUBIfjVjqeWyhYc7Zpxdyge5DWm2eTsAZK6A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAZKi02+P5myHvAfCllyMBNqc8q6kvkypoWyWy7ENEntk+SmaFpfHwl7GL0MExr/wA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -424,9 +424,7 @@ namespace eShopSlution.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("OrderDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 7, 16, 37, 41, 311, DateTimeKind.Local).AddTicks(9962));
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ShipAddress")
                         .IsRequired()
@@ -524,13 +522,51 @@ namespace eShopSlution.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DataCreated = new DateTime(2024, 1, 7, 16, 37, 41, 316, DateTimeKind.Local).AddTicks(5230),
+                            DataCreated = new DateTime(2024, 1, 11, 17, 7, 38, 639, DateTimeKind.Local).AddTicks(9939),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             SeoAlias = "test",
                             Stock = 0,
                             ViewCount = 0
                         });
+                });
+
+            modelBuilder.Entity("eShopSlution.Data.Entities.ProductImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Caption")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FileSize")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDefault")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImage");
                 });
 
             modelBuilder.Entity("eShopSlution.Data.Entities.ProductInCategory", b =>
@@ -583,6 +619,9 @@ namespace eShopSlution.Data.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<decimal>("OriginalPrice")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -615,6 +654,7 @@ namespace eShopSlution.Data.Migrations
                             Details = "Áo sơ mi trắng Việt Tiến",
                             LanguageId = "Vi-VN",
                             Name = "Áo sơ mi trắng Việt Tiến",
+                            OriginalPrice = 0m,
                             ProductId = 1,
                             SeoAlias = "ao-so-mi-trang-Viet-Tien",
                             SeoDescription = "Sản phẩm Áo sơ mi trắng Việt Tiến",
@@ -627,6 +667,7 @@ namespace eShopSlution.Data.Migrations
                             Details = "Viet Tien Men T-Shirt",
                             LanguageId = "en-US",
                             Name = "Viet Tien Men T-Shirt",
+                            OriginalPrice = 0m,
                             ProductId = 1,
                             SeoAlias = "Viet-Tien-men-shirt",
                             SeoDescription = "Viet Tien Men T-Shirt",
@@ -908,6 +949,17 @@ namespace eShopSlution.Data.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("eShopSlution.Data.Entities.ProductImage", b =>
+                {
+                    b.HasOne("eShopSlution.Data.Entities.Product", "product")
+                        .WithMany("ProductImages")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("product");
+                });
+
             modelBuilder.Entity("eShopSlution.Data.Entities.ProductInCategory", b =>
                 {
                     b.HasOne("eShopSlution.Data.Entities.Category", "Category")
@@ -1000,6 +1052,8 @@ namespace eShopSlution.Data.Migrations
                     b.Navigation("Carts");
 
                     b.Navigation("OrderDetails");
+
+                    b.Navigation("ProductImages");
 
                     b.Navigation("ProductInCategories");
 

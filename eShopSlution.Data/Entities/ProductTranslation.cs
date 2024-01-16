@@ -10,6 +10,7 @@ namespace eShopSlution.Data.Entities
     {
         public int Id { set; get; }
         public int ProductId { set; get; }
+        public decimal OriginalPrice { set; get; }
         public string Name { set; get; }
         public string Description { set; get; }
         public string Details { set; get; }

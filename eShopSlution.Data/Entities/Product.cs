@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using eShopSlution.Data.Entities;
 
 namespace eShopSlution.Data.Entities
 {
@@ -24,5 +25,6 @@ namespace eShopSlution.Data.Entities
         public IEnumerable<OrderDetail> OrderDetails { set; get; }
         public IEnumerable<ProductInCategory> ProductInCategories { set; get; }
         public IEnumerable<ProductTranslation> ProductTranslations { set; get; }
+        public IEnumerable<ProductImage> ProductImages { set; get; }
     }
 }
