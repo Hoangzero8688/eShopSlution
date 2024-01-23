@@ -1,6 +1,7 @@
 using eShopSlution.Data.EF;
 using eShopSolution.Utilities.Constants;
 using EShopSolution.Application2.Catalog.Products;
+using EShopSolution.Application2.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -11,7 +12,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<eShopDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString(SystemConstants.MainConectionString)));
 builder.Services.AddSwaggerGen(options => options.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger EshopSlution", Version = "v1" })); 
 //Declare DI
+
+builder.Services.AddTransient<IStorageService, FileStorageService>();
 builder.Services.AddTransient<IpublicProductService, PublicProductService>();
+builder.Services.AddTransient<ImanagerProductService, ManagerProuctService>();
 
 var app = builder.Build();
 

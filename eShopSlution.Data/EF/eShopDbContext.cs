@@ -4,6 +4,7 @@ using eShopSlution.Data.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +57,19 @@ namespace eShopSlution.Data.EF
             modelBuilder.Seed();
             //base.OnModelCreating(modelBuilder);
         }
+
+        //public void ConfigureServices(IServiceCollection services)
+        //{
+        //    // ...
+        //    services.AddCors();
+        //}
+
+        //public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        //{
+        //    // ...
+        //    app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+        //    // ...
+        //}
 
 
         public DbSet<Product> Products { get; set; }
